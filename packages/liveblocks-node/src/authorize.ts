@@ -94,7 +94,7 @@ export async function authorize(
     assertNonEmpty(room, "room");
     assertNonEmpty(userId, "userId");
 
-    const resp = await fetch(buildLiveblocksAuthorizeEndpoint(options, room), {
+    const resp = await fetch(getAuthorizeUrlForRoom(options, room), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${secret}`,
@@ -134,7 +134,7 @@ export async function authorize(
   }
 }
 
-function buildLiveblocksAuthorizeEndpoint(
+function getAuthorizeUrlForRoom(
   options: AllAuthorizeOptions,
   roomId: string
 ): string {
